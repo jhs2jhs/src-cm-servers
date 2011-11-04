@@ -1,0 +1,7 @@
+DataSource/*
+
+.metadata/*
+
+*.class
+*.db
+*.txt
