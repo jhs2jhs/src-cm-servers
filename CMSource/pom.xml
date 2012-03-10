@@ -1,11 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  
   <groupId>com.cm</groupId>
-  <artifactId>CMDataSource</artifactId>
+  <artifactId>CMSource</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>CMDataSource Maven Webapp</name>
+  
+  <name>CMSource Maven Webapp</name>
   <url>http://maven.apache.org</url>
   
   <properties>
@@ -29,12 +31,13 @@
       <scope>test</scope>
     </dependency>
     
+    <!--  
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-      <version>2.4</version>
-      <scope>provided</scope>
-    </dependency>
+  		<groupId>org.apache.tapestry</groupId>
+  		<artifactId>tapestry-core</artifactId>
+  		<version>5.2.6</version>
+	</dependency>
+	-->
     <dependency>
       <groupId>javax.servlet.jsp</groupId>
       <artifactId>jsp-api</artifactId>
@@ -76,7 +79,6 @@
     	<artifactId>mysql-connector-java</artifactId>
     	<version>5.1.17</version>
     </dependency>
-    
   </dependencies>
   
   <build>
@@ -86,7 +88,11 @@
   		<artifactId>jetty-maven-plugin</artifactId>
   		<version>7.5.1.v20110908</version>
   		<configuration>
-  			<scanIntervalSeconds>2</scanIntervalSeconds>
+  			<excludeGoals>run, stop</excludeGoals>
+  			<scanIntervalSeconds>5</scanIntervalSeconds>
+  			<scanTargets>
+  				<scanTarget>src/main/java/com/cm/CMSource/</scanTarget>
+  			</scanTargets>
   			<stopKey>foo</stopKey>
     		<stopPort>9080</stopPort>
   			<webAppConfig>
@@ -101,6 +107,27 @@
   				</connector>
   			</connectors>
   		</configuration>
+  		<executions>
+  			<execution>
+  				<id>start-jetty</id>
+  				<phase>pre-integration-test</phase>
+  				<goals>
+  					<goal>run</goal>
+  				</goals>
+  				<configuration>
+  					<scanIntervalSeconds>0</scanIntervalSeconds>
+  					<daemon>true</daemon>
+  					<reload>automatic</reload>
+  				</configuration>
+  			</execution>
+  			<execution>
+  				<id>stop-jetty</id>
+  				<phase>post-integration-test</phase>
+  				<goals>
+  					<goal>stop</goal>
+  				</goals>
+  			</execution>
+  		</executions>
 	  </plugin>
       <plugin>
       	<groupId>org.apache.maven.plugins</groupId>
@@ -112,8 +139,6 @@
       	</configuration>
       </plugin>
     </plugins>
-    
-    <finalName>CMDataSource</finalName>
+    <finalName>CMSource</finalName>
   </build>
-  
 </project>

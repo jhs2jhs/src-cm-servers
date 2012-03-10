@@ -12,7 +12,7 @@
 		<servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
 		<init-param>
 			<param-name>org.restlet.application</param-name>
-			<param-value>war.datain.DataServerInApp</param-value>
+			<param-value>com.cm.CMSource.datain.DataServerInApp</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>
@@ -20,35 +20,19 @@
 		<url-pattern>/datain/*</url-pattern>
 	</servlet-mapping>
   
-  
   <!-- Testing Servlet: http://localhost/hello/hello -->
-	<servlet>
+  	<servlet>
    		<display-name>Hello App</display-name>
 		<servlet-name>HelloAppServlet</servlet-name>
 		<servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
 		<init-param>
 			<param-name>org.restlet.application</param-name>
-			<param-value>war.FirstStepsApplication</param-value>
+			<param-value>com.cm.CMSource.FirstStepsApplication</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>HelloAppServlet</servlet-name>
 		<url-pattern>/hello/*</url-pattern>
-	</servlet-mapping>
-  
-  <!-- Testing Servlet: http://localhost/hellotest/test -->
-	<servlet>
-   		<display-name>Hello Testing</display-name>
-		<servlet-name>HelloTestServlet</servlet-name>
-		<servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
-		<init-param>
-			<param-name>org.restlet.application</param-name>
-			<param-value>war.hellotest.HelloApplication</param-value>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>HelloTestServlet</servlet-name>
-		<url-pattern>/hellotest/*</url-pattern>
 	</servlet-mapping>
   
 </web-app>

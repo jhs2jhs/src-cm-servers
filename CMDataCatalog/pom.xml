@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.cm</groupId>
-  <artifactId>CMDataSource</artifactId>
+  <artifactId>CMDataCatalog</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>CMDataSource Maven Webapp</name>
+  <name>CMDataCatalog Maven Webapp</name>
   <url>http://maven.apache.org</url>
   
   <properties>
@@ -76,7 +76,6 @@
     	<artifactId>mysql-connector-java</artifactId>
     	<version>5.1.17</version>
     </dependency>
-    
   </dependencies>
   
   <build>
@@ -86,9 +85,9 @@
   		<artifactId>jetty-maven-plugin</artifactId>
   		<version>7.5.1.v20110908</version>
   		<configuration>
-  			<scanIntervalSeconds>2</scanIntervalSeconds>
+  			<scanIntervalSeconds>5</scanIntervalSeconds>
   			<stopKey>foo</stopKey>
-    		<stopPort>9080</stopPort>
+    		<stopPort>9082</stopPort>
   			<webAppConfig>
   				<baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
   					<resourcesAsCSV>src/main/webapp</resourcesAsCSV>
@@ -96,7 +95,7 @@
   			</webAppConfig>
   			<connectors>
   				<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-  					<port>8094</port>
+  					<port>8092</port>
   					<maxIdleTime>60000</maxIdleTime>
   				</connector>
   			</connectors>
@@ -112,8 +111,6 @@
       	</configuration>
       </plugin>
     </plugins>
-    
-    <finalName>CMDataSource</finalName>
+    <finalName>CMDataCatalog</finalName>
   </build>
-  
 </project>

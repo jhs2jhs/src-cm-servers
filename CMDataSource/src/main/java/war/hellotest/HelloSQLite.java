@@ -32,7 +32,7 @@ public class HelloSQLite extends ServerResource {
 		        System.out.println("id = " + rs.getInt("id"));
 		        out += "name = " + rs.getString("name");
 		        out += "id = " + rs.getInt("id");
-		      }
+		      } //create table if not exists persons (id integer, name string)
 		} catch (SQLException e){
 			System.err.println(e.getMessage());
 		} finally {

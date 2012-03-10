@@ -1,0 +1,25 @@
+package war.utils;
+
+public final class DB_SQL {
+	public static final String DB_PATH = "cm_db_datasource.db";
+	
+	public static final String SQL_CREATE_USER = "" +
+			"CREATE TABLE IF NOT EXISITS user (" +
+			"	user_id INTEGEER PRIMARY KEY," +
+			"	user_label TEXT NOT NULL" +
+			")";
+	public String get_SQL_CREATE_USER(){
+		return SQL_CREATE_USER;
+	}
+	public static final String SQL_CREATE_APPFACETIME = "" +
+			"CREATE TABLE IF NOT EXISITS app_facetime (" +
+			"	app_id INTEGEER PRIMARY KEY," +
+			"	user_id INTEGER NOT NULL," +
+			"	facetime INTEGER," +
+			"	starttime text" +
+			"	FOREIGN KEY (user_id) REFERENCES user(user_id)" +
+			")";
+	
+	//public static SQL_INSERT_USER = "INSERT ";
+
+}

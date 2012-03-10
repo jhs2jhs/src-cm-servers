@@ -1,0 +1,78 @@
+package war.utils;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+import org.restlet.resource.Get;
+import org.restlet.resource.ServerResource;
+
+import war.utils.DB_SQL;
+
+public class DB {
+	private DB_SQL db_sql = new DB_SQL();
+	private Connection conn = null;
+	
+	public DB (){
+		 if (this.conn != null){
+			 this.conn_close();
+		 } else {
+			 this.conn = this.conn_get();
+		 }
+	}
+	
+	public Statement stat_get (){
+		if (this.conn == null) {
+			this.conn = this.conn_get();
+		}
+		Statement statement = this.conn.createStatement();
+		statement.setQueryTimeout(30);
+		return statement;
+	}
+	
+	public Connection conn_get (){
+		Class.forName("org.sqlite.JDBC");
+		Connection connection = null;
+		try {
+			connection = DriverManager.getConnection("jdbc:sqlite:"+DB_SQL.DB_PATH);
+			return connection;
+		} catch (SQLException e){
+			System.err.println(e.getMessage());
+		}
+	}
+	
+	public void conn_close(){
+		try {
+			if(this.conn != null) {
+				this.conn.close();
+	        }
+	    } catch(SQLException e) {
+	        // connection close failed.
+	    	System.err.println(e);
+	    }
+	}
+	
+	public void db_init() throws ClassNotFoundException{
+		Statement stat = this.stat_get();
+		stat.executeUpdate(this.db_sql.get_SQL_CREATE_USER());
+		stat.executeUpdate(DB_SQL.SQL_CREATE_APPFACETIME);
+		/*statement.executeUpdate("insert into person values(1, 'leo')");
+		statement.executeUpdate("insert into person values(2, 'yui')");
+		ResultSet rs = statement.executeQuery("select * from person");
+		while(rs.next()){
+			// read the result set
+		    System.out.println("name = " + rs.getString("name"));
+		    System.out.println("id = " + rs.getInt("id"));
+		        out += "name = " + rs.getString("name");
+		        out += "id = " + rs.getInt("id");
+		}
+		return out;*/
+	}
+	
+	public static void main(String args[]){
+		System.out.println("Hello db");
+	}
+
+}
